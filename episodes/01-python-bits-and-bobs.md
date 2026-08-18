@@ -24,6 +24,130 @@ get started with programming, because they are only useful in edge cases, or bec
 shorthand ways of doing things that are already possible in other ways. In this episode, we will
 cover some of these elements, and how they can be useful in your own code.
 
+## Types
+
+### What is the type of a variable?
+
+In an intro class, you were probably taught that you can get the type of a variable by using the
+built-in `type()` function. This is true, but there's actually a slightly better way to do this.
+
+Try out the following code:
+
+```python
+for value in [42, 42.1, "43"]:
+    # TODO: Make sure the value is an integer
+    print(f"The current value is {value}")
+```
+
+Let's try to add in some code to address the TODO comment. We might first try something like this:
+
+```python
+for value in [42, 42.1, "43"]:
+    if type(value) == int:
+        print(f"The current value is {value}")
+```
+
+::: callout
+
+Note that the value on the right hand side of the `==` operator is the type of the variable, not a
+string.
+
+:::
+
+This works, but there's a specific function built for this purpose, called `isinstance()`. This
+function takes two arguments: the variable you want to check and the type to check against. The
+function returns `True` if the variable is an instance of the specified type, and `False` otherwise.
+Here's the same code as above, but using `isinstance()` instead:
+
+```python
+for value in [42, 42.1, "42"]:
+    if isinstance(value, int):
+        print(f"The current value is {value}")
+```
+
+::: callout
+
+Beyond the scope of this workshop, but one of the big advantages of using `isinstance()` is that it
+can also check for subclasses. For example, if you have a special class of integer that inherits
+from the built-in `int` class, `isinstance()` will still return `True` for instances of your
+subclass, while `type()` will not.
+
+An example:
+
+```python
+class MyInt(int):
+    pass
+
+for value in [42, 42.1, "43", MyInt(44)]:
+    if type(value) == int:
+        print(f"The current value is {value} (type())")
+    if isinstance(value, int):
+        print(f"The current value is {value} (isinstance())")
+```
+
+:::
+
+### "Falsy" Values
+
+A common condition we want to check for is whether a variable has a value or not. In Python, there
+are several values which are considered "falsy", which means that even though they are a specific
+type, they will resolve to a boolean value of `False` when evaluated in a boolean context. These
+include:
+
+- `None`
+- `0` (zero)
+- `0.0` (zero as a float)
+- `""` (empty string)
+- `[]` (empty list)
+- `{}` (empty dictionary)
+- `()` (empty tuple)
+
+This can be useful when we want to quickly check if a variable has a value or not, without having
+to explicitly check based on the type of the variable. This has the added benefit of being more
+readable in the context of the code. We can see this with the following example:
+
+```python
+# .. Previous code ..
+
+config = get_config()
+
+if not config:
+    print("No config found, using defaults.")
+    config = get_default_config()
+```
+
+### Order matters in Conditional Statements
+
+When we write a conditional statement, the values are actually evaluated in order, from left to
+right. This means that we can craft a conditional statement that will "short-circuit" and not
+evaluate the rest of the statement if the first condition is met. This can be useful when we want
+to check a condition that might raise an error if evaluated, like a method which is only available
+on certain types of objects. Take the following example:
+
+```python
+amount = []
+
+if amount.isnumeric() and isinstance(amount, int):
+    print(f"Withdrawing {amount} from your account.")
+else:
+    print("Invalid amount.")
+```
+
+As is, this code will fail with an `AttributeError` because the `isnumeric()` method is not
+available to lists. However, if we swap the order of the conditions, we will avoid this error,
+because the `isinstance()` check will short-circuit the evaluation of the second condition when it
+comes back as `False`:
+
+```python
+amount = []
+
+if isinstance(amount, int) and amount.isnumeric():
+    print(f"Withdrawing {amount} from your account.")
+else:
+    print("Invalid amount.")
+```
+
+
 ### Tuple Unpacking
 
 Tuple unpacking is a feature in Python that allows you to assign values from a tuple (or any
