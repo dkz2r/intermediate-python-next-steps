@@ -67,7 +67,12 @@ contact: 'info@dkz2r.de' # FIXME
 
 # Order of episodes in your lesson
 episodes:
-- introduction.Rmd
+- 00-introduction.Rmd
+- 01-python-bits-and-bobs.md
+- 02-iterables-and-generators.md
+- 03-built-in-modules-iterating.md
+- 04-built-in-modules-logging.md
+- 05-built-in-modules-functools.md
 
 # Information for Learners
 learners:
