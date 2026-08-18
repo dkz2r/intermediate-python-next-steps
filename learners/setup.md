@@ -2,53 +2,30 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+::: prereq
 
-## Data Sets
+1. We recommend that you have a **basic understanding of Python** syntax and programming concepts,
+  including variable types, loops, conditional statements, and functions.
+2. You must have an installation of **Python 3.6 or greater** on the device you are bringing before
+  the start of the workshop.
+3. There is no required IDE (Integrated Developer Environment) to participate in the workshop - you
+  can use whatever setup you are most comfortable with. **We will be demonstrating using Jupyter**
+  **Notebooks**.
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+:::
 
-## Software Setup
+## Checking your Python installation
 
-::::::::::::::::::::::::::::::::::::::: discussion
+You can easily check if you have Python installed by opening a terminal and typing:
 
-### Details
+```bash
+python --version
+```
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+(on some systems, you may need to use `python3` instead of `python`).
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+You should see a response similar to the following:
 
-:::::::::::::::: spoiler
-
-### Windows
-
-Use PuTTY
-
-::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### MacOS
-
-Use Terminal.app
-
-::::::::::::::::::::::::
-
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Use Terminal
-
-::::::::::::::::::::::::
-
+```bash
+Python 3.14.7
+```
